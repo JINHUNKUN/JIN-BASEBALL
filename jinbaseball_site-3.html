@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JIN BASEBALL | 野球選手の溜まり場 ─ 沖縄・西原</title>
+<meta name="description" content="JIN BASEBALL PERFORMANCE LAB / ACADEMY / VERTEX TRAINING GYM。投打パフォーマンス向上・少人数制育成・フィジカル強化を沖縄西原から。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#05070F;
+  --surface:#080D1A;
+  --card:#0D1424;
+  --red:#C9A84C;
+  --red2:#E2BF6A;
+  --line:rgba(201,168,76,.12);
+  --muted:#445577;
+  --soft:#8899bb;
+  --text:#dce4f0;
+}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:'Noto Sans JP',sans-serif;line-height:1.75;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;
+  background:rgba(5,7,15,.92);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.logo{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.5rem;letter-spacing:.14em;
+  color:var(--text);text-decoration:none;
+  display:flex;align-items:center;gap:.5rem;
+}
+.logo-dot{width:8px;height:8px;background:var(--red);border-radius:50%;margin-top:2px;flex-shrink:0}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center}
+.nav-links a{color:var(--muted);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-decoration:none;transition:color .2s;text-transform:uppercase}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--red)!important;color:#fff!important;padding:.4rem 1.1rem;border-radius:3px;font-weight:700!important}
+.nav-cta:hover{background:var(--red2)!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:1.5px;background:var(--text);display:block}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:flex-end;
+  padding:0 6% 10vh;
+  position:relative;overflow:hidden;
+}
+.hero-img{
+  position:absolute;inset:0;z-index:0;
+  overflow:hidden;
+}
+.hero-img video{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  display:block;
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(to bottom, rgba(5,7,15,.35) 0%, rgba(5,7,15,.6) 50%, rgba(5,7,15,.97) 100%);
+}
+.hero-texture{
+  position:absolute;inset:0;z-index:2;
+  background-image:repeating-linear-gradient(-55deg,transparent 0,transparent 30px,rgba(201,168,76,.04) 30px,rgba(201,168,76,.04) 31px);
+}
+.hero-label{
+  position:absolute;top:60px;right:6%;z-index:4;
+  writing-mode:vertical-rl;font-size:.65rem;letter-spacing:.25em;color:rgba(255,255,255,.35);
+  text-transform:uppercase;padding-top:60px;
+}
+.hero-content{position:relative;z-index:3;max-width:900px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-size:.68rem;letter-spacing:.2em;font-weight:700;
+  color:var(--red);text-transform:uppercase;margin-bottom:1.6rem;
+}
+.hero-tag::before{content:'';width:28px;height:1px;background:var(--red)}
+h1.hero-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,11vw,9rem);
+  line-height:.93;letter-spacing:.03em;color:#fff;margin-bottom:1.2rem;
+}
+h1.hero-h1 em{font-style:normal;color:var(--red)}
+.hero-copy{font-size:clamp(.88rem,1.4vw,1rem);color:var(--soft);max-width:500px;margin-bottom:2.6rem;font-weight:300;line-height:2}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-r{
+  background:var(--red);color:#fff;padding:.8rem 1.8rem;border-radius:3px;
+  font-weight:700;font-size:.88rem;letter-spacing:.08em;text-decoration:none;display:inline-block;
+  transition:background .2s,transform .15s;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;
+}
+.btn-r:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-ghost{
+  background:transparent;color:var(--text);padding:.8rem 1.8rem;border-radius:3px;
+  font-weight:500;font-size:.88rem;letter-spacing:.08em;text-decoration:none;display:inline-block;
+  border:1px solid rgba(255,255,255,.25);transition:border-color .2s,transform .15s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
+.hero-scroll{
+  position:absolute;bottom:40px;left:6%;z-index:4;
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.66rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;
+}
+.scroll-line{width:40px;height:1px;background:var(--muted)}
+
+/* ── STRIP ── */
+.strip{background:var(--red);padding:1.1rem 6%;overflow:hidden;white-space:nowrap}
+.strip-inner{display:inline-flex;gap:3rem;animation:marquee 20s linear infinite}
+.strip-inner span{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.14em;color:#fff;opacity:.92}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── SHARED ── */
+.sec{padding:100px 6%}
+.sec-inner{max-width:1160px;margin:0 auto}
+.eyebrow{font-size:.65rem;font-weight:700;letter-spacing:.24em;color:var(--red);text-transform:uppercase;display:flex;align-items:center;gap:.6rem;margin-bottom:.8rem}
+.eyebrow::after{content:'';flex:0 0 24px;height:1px;background:var(--red)}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,5vw,4rem);letter-spacing:.06em;line-height:1.05;margin-bottom:.8rem}
+.sec-lead{color:var(--soft);font-size:.9rem;font-weight:300;max-width:520px;margin-bottom:3rem;line-height:2}
+
+/* ── SERVICES ── */
+.services{background:var(--surface)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.svc-card{
+  background:var(--card);padding:0;
+  display:flex;flex-direction:column;position:relative;overflow:hidden;transition:background .25s;
+}
+.svc-card:hover{background:#1c1c1c}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .35s ease}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-img{width:100%;aspect-ratio:3/4;overflow:hidden}
+.svc-img img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s;display:block}
+.svc-img.square img{object-position:center center;}
+.svc-img.tall img{object-position:center 15%;}
+.svc-card:hover .svc-img img{transform:scale(1.04)}
+.svc-body{padding:2rem 1.8rem;flex:1;display:flex;flex-direction:column}
+.svc-num{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:rgba(201,168,76,.12);line-height:1;margin-bottom:.4rem}
+.svc-en{font-size:.62rem;letter-spacing:.2em;font-weight:700;color:var(--red);text-transform:uppercase;margin-bottom:.5rem}
+.svc-card h3{font-size:1.15rem;font-weight:700;margin-bottom:.8rem;letter-spacing:.04em}
+.svc-card p{font-size:.95rem;color:var(--soft);line-height:2;flex:1}
+.svc-specs{margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--line);list-style:none}
+.svc-specs li{font-size:.72rem;color:var(--muted);padding:.25rem 0;display:flex;align-items:center;gap:.5rem}
+.svc-specs li::before{content:'▸';color:var(--red);font-size:.6rem}
+.svc-link{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;color:var(--red);text-decoration:none;margin-top:1.4rem;transition:gap .2s}
+.svc-link:hover{gap:.7rem}
+
+/* ── PHILOSOPHY ── */
+.philosophy{background:var(--ink)}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.phil-quote{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:.06em;line-height:1.25;color:#fff;margin-bottom:2rem}
+.phil-quote em{font-style:normal;color:var(--red)}
+.phil-body{font-size:.88rem;color:var(--soft);line-height:2.1;font-weight:300}
+.phil-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.stat-box{background:var(--card);padding:2rem 1.6rem}
+.stat-big{font-family:'Bebas Neue',sans-serif;font-size:3.2rem;color:#fff;line-height:1;margin-bottom:.3rem}
+.stat-big sup{font-size:1.1rem;color:var(--red)}
+.stat-label{font-size:.72rem;color:var(--muted);letter-spacing:.1em;line-height:1.5}
+
+/* ── EQUIPMENT ── */
+.equipment{background:var(--surface)}
+.eq-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}
+.eq-card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1.6rem;display:flex;align-items:flex-start;gap:1rem}
+.eq-video{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+.eq-video video{width:100%;height:100%;object-fit:cover;display:block;}
+.eq-icon{width:42px;height:42px;min-width:42px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.15);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.eq-card h4{font-size:.88rem;font-weight:700;margin-bottom:.3rem}
+.eq-card p{font-size:.75rem;color:var(--muted);line-height:1.6}
+
+/* ── ACADEMY ── */
+.academy{background:var(--ink)}
+.ac-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.ac-label{display:inline-block;font-size:.65rem;letter-spacing:.2em;font-weight:700;color:var(--red);border:1px solid rgba(201,168,76,.4);padding:.25rem .7rem;border-radius:2px;text-transform:uppercase;margin-bottom:1rem}
+.ac-points{list-style:none;margin-top:1.5rem}
+.ac-points li{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line);font-size:.85rem;align-items:flex-start}
+.ac-points li:last-child{border-bottom:none}
+.ac-points li .icon{min-width:28px;height:28px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;color:#fff;margin-top:1px}
+.ac-points li div span{display:block;font-size:.7rem;color:var(--muted);margin-top:.2rem}
+.ac-schedule{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.ac-sch-head{background:var(--red);padding:1rem 1.4rem;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.1em}
+.ac-sch-body{padding:0 1.4rem}
+.ac-sch-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.82rem;gap:1rem}
+.ac-sch-row:last-child{border-bottom:none}
+.ac-sch-time{color:var(--soft);min-width:160px}
+.ac-sch-place{color:var(--muted);font-size:.72rem}
+.badge{font-size:.62rem;font-weight:700;letter-spacing:.06em;padding:.2rem .5rem;border-radius:2px;white-space:nowrap}
+.badge-r{background:rgba(201,168,76,.15);color:var(--red);border:1px solid rgba(201,168,76,.28)}
+.badge-g{background:rgba(255,255,255,.06);color:var(--soft);border:1px solid var(--line)}
+
+/* ── STORY ── */
+.story{background:var(--surface)}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;max-width:1100px;margin:0 auto}
+.story-photo{position:relative}
+.story-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;display:block;filter:grayscale(20%)}
+.story-photo-badge{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(8,13,26,.95);
+  border-top:2px solid #C9A84C;
+  padding:.8rem 1.2rem;
+}
+.story-photo-badge .name{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.12em}
+.story-photo-badge .title{font-size:.68rem;opacity:.85;letter-spacing:.1em;margin-top:.1rem}
+.story-name{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.1em;margin-bottom:.1rem}
+.story-role{font-size:.85rem;letter-spacing:.14em;color:var(--red);font-weight:700;text-transform:uppercase;margin-bottom:.4rem}
+.story-en{font-size:.75rem;color:var(--muted);margin-bottom:1.4rem;letter-spacing:.04em}
+.story-qual{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.4rem}
+.qual-tag{font-size:.68rem;font-weight:700;background:rgba(201,168,76,.12);color:var(--red);border:1px solid rgba(201,168,76,.25);padding:.2rem .6rem;border-radius:2px;letter-spacing:.04em}
+.story-text{font-size:1rem;color:var(--soft);line-height:2.1;font-weight:300;margin-bottom:1.6rem}
+.career-section{margin-bottom:1.4rem}
+.career-section h4{font-size:.82rem;font-weight:700;letter-spacing:.18em;color:var(--red);text-transform:uppercase;margin-bottom:.7rem}
+.career-list{list-style:none}
+.career-list li{font-size:.92rem;color:var(--muted);padding:.3rem 0 .3rem 1rem;border-bottom:1px solid var(--line);position:relative}
+.career-list li:last-child{border-bottom:none}
+.career-list li::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:4px;height:4px;background:var(--red);border-radius:50%}
+.social-row{display:flex;gap:.7rem;margin-top:1.4rem;flex-wrap:wrap}
+.social-btn{display:flex;align-items:center;gap:.4rem;font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:4px;padding:.35rem .8rem;transition:border-color .2s,color .2s}
+.social-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* ── LINE CTA ── */
+.line-cta{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:60px 6%;text-align:center}
+.line-cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3rem);letter-spacing:.08em;margin-bottom:.6rem}
+.line-cta p{color:var(--soft);font-size:.88rem;margin-bottom:2rem;font-weight:300}
+.btn-line{display:inline-flex;align-items:center;gap:.6rem;background:#06C755;color:#fff;padding:.9rem 2rem;border-radius:4px;font-weight:700;font-size:.95rem;letter-spacing:.06em;text-decoration:none;transition:opacity .2s,transform .15s}
+.btn-line:hover{opacity:.85;transform:translateY(-2px)}
+
+/* ── FAQ ── */
+.faq{background:var(--ink)}
+.faq-wrap{max-width:760px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;cursor:pointer;gap:1rem;font-size:.9rem;font-weight:500}
+.faq-icon{min-width:22px;height:22px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:#fff;font-weight:900;transition:transform .3s}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+.faq-a{font-size:.83rem;color:var(--soft);line-height:1.95;padding:0 0 1.2rem;display:none;font-weight:300}
+.faq-item.open .faq-a{display:block}
+
+/* ── ACCESS ── */
+.access{background:var(--surface)}
+.access-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.map-box{width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.map-box iframe{width:100%;height:100%;border:none;filter:grayscale(1) brightness(.8) invert(1) contrast(.85)}
+.info-block dt{font-size:.65rem;letter-spacing:.16em;font-weight:700;color:var(--red);text-transform:uppercase;margin-top:1.3rem}
+.info-block dd{font-size:.85rem;color:var(--soft);margin-top:.2rem}
+.info-block a{color:var(--text);text-decoration:none}
+.info-block a:hover{color:var(--red)}
+
+/* ── FOOTER ── */
+footer{background:#03050E;padding:48px 6% 24px;border-top:1px solid var(--line)}
+.ft-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);margin-bottom:1.5rem}
+.ft-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.12em;margin-bottom:.8rem}
+.ft-logo span{color:var(--red)}
+.ft-tagline{font-size:.78rem;color:var(--muted);line-height:1.9}
+.ft-col h4{font-size:.65rem;font-weight:700;letter-spacing:.2em;color:var(--red);text-transform:uppercase;margin-bottom:1rem}
+.ft-col ul{list-style:none}
+.ft-col ul li{margin-bottom:.5rem}
+.ft-col ul li a{font-size:.8rem;color:var(--muted);text-decoration:none;transition:color .2s}
+.ft-col ul li a:hover{color:var(--text)}
+.ft-copy{text-align:center;font-size:.7rem;color:var(--muted);max-width:1160px;margin:0 auto}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:60px;left:0;right:0;background:rgba(5,7,15,.97);padding:1.5rem 6%;border-bottom:1px solid var(--line);gap:1.2rem}
+  .svc-grid{grid-template-columns:1fr}
+  .phil-grid,.ac-wrap,.story-grid,.access-grid{grid-template-columns:1fr;gap:2.5rem}
+  .phil-stats{grid-template-columns:1fr 1fr}
+  .ft-inner{grid-template-columns:1fr;gap:2rem}
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content{animation:fadeUp .8s .1s ease both}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-dot"></div>
+    JIN BASEBALL
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#academy">Academy</a></li>
+    <li><a href="#story">Coach</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#access">Access</a></li>
+    <li><a href="https://lin.ee/UuAEwkm" target="_blank" class="nav-cta">公式LINE</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img">
+    <video autoplay muted loop playsinline>
+      <source src="JINBASEBALL_HP用動画.MOV" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-label">Nishihara, Okinawa</div>
+  <div class="hero-content">
+    <div class="hero-tag">野球選手の溜まり場</div>
+    <h1 class="hero-h1">
+      自らの<br>
+      限界を<br>
+      <em>超えていく</em><br>
+      場所。
+    </h1>
+    <p class="hero-copy">
+      JIN BASEBALL PERFORMANCE LAB<br>
+      JIN BASEBALL ACADEMY<br>
+      VERTEX TRAINING GYM<br><br>
+      いざ「頂点へ」
+    </p>
+    <div class="hero-btns">
+      <a href="https://lin.ee/UuAEwkm" target="_blank" class="btn-r">公式LINE（Academy） <span style="font-size:.6rem;font-weight:900;letter-spacing:.08em;background:rgba(0,0,0,.25);padding:.1rem .35rem;border-radius:2px;margin-left:.3rem;">西原</span></a>
+      <a href="https://line.me/R/ti/p/@337negyd" target="_blank" class="btn-r">公式LINE（Academy） <span style="font-size:.6rem;font-weight:900;letter-spacing:.08em;background:rgba(0,0,0,.25);padding:.1rem .35rem;border-radius:2px;margin-left:.3rem;">South</span></a>
+      <a href="https://lin.ee/wl2FIBl" target="_blank" class="btn-r" style="background:#0D1424;color:#C9A84C;border:1.5px solid #C9A84C;">公式LINE（Personal） <span style="font-size:.6rem;font-weight:900;letter-spacing:.08em;background:rgba(201,168,76,.2);padding:.1rem .35rem;border-radius:2px;margin-left:.3rem;">LAB</span></a>
+      <a href="#services" class="btn-ghost">サービスを見る</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-line"></span>
+    Scroll
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span>JIN BASEBALL PERFORMANCE LAB</span><span>·</span>
+    <span>JIN BASEBALL ACADEMY</span><span>·</span>
+    <span>VERTEX TRAINING GYM</span><span>·</span>
+    <span>勝利へと導くピースを見つける場所</span><span>·</span>
+    <span>JIN BASEBALL PERFORMANCE LAB</span><span>·</span>
+    <span>JIN BASEBALL ACADEMY</span><span>·</span>
+    <span>VERTEX TRAINING GYM</span><span>·</span>
+    <span>勝利へと導くピースを見つける場所</span><span>·</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec services" id="services">
+  <div class="sec-inner">
+    <div class="eyebrow">Services</div>
+    <h2 class="sec-title">3つのサービス</h2>
+    <p class="sec-lead">ジュニアアスリートからトップアスリートまで。パフォーマンスの全てを、ここで。</p>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-img square">
+          <img src="アカデミーHP用画像.png" alt="JIN BASEBALL ACADEMY" loading="lazy">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">01</div>
+          <div class="svc-en">Academy</div>
+          <h3>JIN BASEBALL ACADEMY</h3>
+          <p>2023年4月より小学生〜中学生を対象とした少人数制・中長期育成型アカデミー。スキルだけでなく体力・筋力・障害予防・基本的運動スキルの獲得を目的に、次のカテゴリへの準備を心身ともに育成します。</p>
+          <ul class="svc-specs">
+            <li>小学生〜中学生対象</li>
+            <li>少人数制でひとりひとりに向き合う</li>
+            <li>中長期育成プログラム</li>
+            <li>西原校・糸満校（JBA SOUTH）</li>
+          </ul>
+          <a href="#academy" class="svc-link">詳しく見る →</a>
+          <a href="https://lin.ee/UuAEwkm" target="_blank" class="svc-link">公式LINE（西原校）→</a>
+          <a href="https://line.me/R/ti/p/@337negyd" target="_blank" class="svc-link">公式LINE（South校）→</a>
+          <a href="https://www.instagram.com/jin.baseball_academy?igsh=MWZiOGllYXJxZTR4cA%3D%3D&utm_source=qr" target="_blank" class="svc-link">📷 Instagram →</a>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img">
+          <img src="ジムHP用画像.jpg" alt="VERTEX TRAINING GYM" loading="lazy">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">02</div>
+          <div class="svc-en">Gym</div>
+          <h3>VERTEX TRAINING GYM</h3>
+          <p>全てのスポーツ選手へ。スキルだけでなく高いカテゴリへ進むためのフィジカル強化環境を完備。また全ての方の健康寿命80歳社会へ貢献する、本格トレーニングジムです。</p>
+          <ul class="svc-specs">
+            <li>VBTデバイス完備</li>
+            <li>メディシンボール使用可能</li>
+            <li>プライオBOX完備</li>
+            <li>全スポーツ選手・一般の方対象</li>
+          </ul>
+          <a href="https://lin.ee/zkophtq" target="_blank" class="svc-link">LINEで申込む →</a>
+          <a href="https://www.instagram.com/vertex_training_gym_okinawa?igsh=bml6NXd6czYyYnpw&utm_source=qr" target="_blank" class="svc-link">📷 Instagram →</a>
+        </div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-img tall">
+          <img src="パーソナルセッションHP用画像.png" alt="JIN BASEBALL Performance Lab" loading="lazy">
+        </div>
+        <div class="svc-body">
+          <div class="svc-num">03</div>
+          <div class="svc-en">Performance Lab</div>
+          <h3>JIN BASEBALL PERFORMANCE LAB</h3>
+          <p>投球・打撃のパフォーマンス向上に特化したサービス。基本動作の獲得から、より高いパフォーマンスを発揮するために選手と協力しながら共に作り上げていきます。</p>
+          <ul class="svc-specs">
+            <li>Pocket Radar完備（弾道計測器）</li>
+            <li>BLAST MOTION完備（スイングデータ計測）</li>
+            <li>動作分析・フォームチェック</li>
+            <li>オンライン対応可</li>
+          </ul>
+          <a href="https://lin.ee/wl2FIBl" target="_blank" class="svc-link">LINEで問い合わせる →</a>
+          <a href="https://www.instagram.com/jbl_okinawa?igsh=OW5lc3l6MTJyemxl&utm_source=qr" target="_blank" class="svc-link">📷 Instagram →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="sec philosophy" id="philosophy">
+  <div class="sec-inner">
+    <div class="phil-grid">
+      <div>
+        <div class="eyebrow">Philosophy</div>
+        <p class="phil-quote">
+          足りないピースを<br>
+          <em>見つける</em><br>
+          場所。
+        </p>
+        <p class="phil-body">
+          「価値あるものほど成し遂げることは難しい」<br><br>
+          皆それぞれストーリーを持っています。私もこれまでにいくつもの困難を乗り越えてきました。すべてが手探りの状態から始まり、試行錯誤しながら経験とスキルを積んできました。<br><br>
+          スポーツを通して人生を豊かにする。これまで培ってきた経験と知識を活かし、スポーツの価値を高める事で地域に貢献していきます。
+        </p>
+      </div>
+      <div>
+        <div class="phil-stats">
+          <div class="stat-box">
+            <div class="stat-big">5.0<sup>★</sup></div>
+            <div class="stat-label">Googleレビュー<br>平均評価</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-big">25<sup>件</sup></div>
+            <div class="stat-label">クチコミ数</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-big">NPB<sup>4球団</sup></div>
+            <div class="stat-label">自主トレ<br>サポート実績</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-big">5,000<sup>人+</sup></div>
+            <div class="stat-label">指導実績<br>ジュニア〜NPB</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-big">30<sup>チーム+</sup></div>
+            <div class="stat-label">県内外<br>チーム指導実績</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<section class="sec equipment" id="equipment">
+  <div class="sec-inner">
+    <div class="eyebrow">Equipment</div>
+    <h2 class="sec-title">設備・機材</h2>
+    <p class="sec-lead">データと感覚を組み合わせた、根拠ある指導を実現するための機材を完備しています。</p>
+    <div class="eq-list">
+      <div class="eq-card">
+        <div class="eq-icon">📡</div>
+        <div><h4>Pocket Radar</h4><p>球速・弾道計測器。投球の速度を正確に計測し、成長を数値で可視化します。</p></div>
+      </div>
+      <div class="eq-card">
+        <div class="eq-icon">📊</div>
+        <div><h4>BLAST MOTION</h4><p>スイングデータ計測センサー。バットスピード・アタックアングルなどを分析します。</p></div>
+      </div>
+      <div class="eq-card">
+        <div class="eq-icon">🚴</div>
+        <div><h4>Watt Bike</h4><p>パワー出力を正確に計測できる高性能バイク。有酸素能力・無酸素能力の向上に活用します。</p></div>
+      </div>
+      <div class="eq-video">
+        <video autoplay muted loop playsinline>
+          <source src="JIN ベースボールネオン 2.MP4" type="video/mp4">
+        </video>
+      </div>
+      <div class="eq-card">
+        <div class="eq-icon">🏋️</div>
+        <div><h4>メディシンボール</h4><p>爆発的パワー開発に欠かせないメディシンボールを各種サイズ取り揃えています。</p></div>
+      </div>
+      <div class="eq-card">
+        <div class="eq-icon">📦</div>
+        <div><h4>プライオBOX</h4><p>ジャンプトレーニング・反応速度向上に特化したプライオメトリクスBOXを完備。</p></div>
+      </div>
+      <div class="eq-card">
+        <div class="eq-icon">🎥</div>
+        <div><h4>動作解析</h4><p>動画を活用したフォームチェック・動作解析でオンラインでもフィードバック可能。</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACADEMY -->
+<section class="sec academy" id="academy">
+  <div class="sec-inner">
+    <div class="eyebrow">Academy</div>
+    <h2 class="sec-title">JIN BASEBALL ACADEMY</h2>
+    <div class="ac-wrap">
+      <div>
+        <div class="ac-label">少人数制 · 中長期育成型</div>
+        <p style="font-size:.88rem;color:var(--soft);line-height:2;font-weight:300;">2023年4月より小学生から中学生を対象に開校。スキルだけではなく、総合的なアスリート育成を行います。</p>
+        <ul class="ac-points">
+          <li>
+            <div class="icon">✓</div>
+            <div>投打動作の基礎から応用<span>フォームを根本から見直し、再現性の高い動きを習得</span></div>
+          </li>
+          <li>
+            <div class="icon">✓</div>
+            <div>体力・筋力強化<span>年齢に合ったトレーニングで野球に必要な身体能力を育成</span></div>
+          </li>
+          <li>
+            <div class="icon">✓</div>
+            <div>障害予防トレーニング<span>成長期の身体を守るセルフケアと予防プログラム</span></div>
+          </li>
+          <li>
+            <div class="icon">✓</div>
+            <div>次カテゴリへの準備<span>中学・高校野球へ繋がる心身の育成</span></div>
+          </li>
+        </ul>
+        <div style="margin-top:1.8rem">
+          <a href="https://lin.ee/UuAEwkm" target="_blank" class="btn-r">公式LINEで無料体験を申込む</a>
+        </div>
+      </div>
+      <div>
+        <div class="ac-schedule">
+          <div class="ac-sch-head">開催スケジュール</div>
+          <div class="ac-sch-body">
+            <div class="ac-sch-row">
+              <span class="ac-sch-time">火・水・木 19:20〜</span>
+              <span class="ac-sch-place">西原校</span>
+              <span class="badge badge-r">19:20クラス</span>
+            </div>
+            <div class="ac-sch-row">
+              <span class="ac-sch-time">火・水・木 20:25〜</span>
+              <span class="ac-sch-place">西原校</span>
+              <span class="badge badge-r">20:25クラス</span>
+            </div>
+            <div class="ac-sch-row">
+              <span class="ac-sch-time">月・水 19:20〜</span>
+              <span class="ac-sch-place">South校（糸満）</span>
+              <span class="badge badge-r">19:20クラス</span>
+            </div>
+            <div class="ac-sch-row">
+              <span class="ac-sch-time">月・水 20:25〜</span>
+              <span class="ac-sch-place">South校（糸満）</span>
+              <span class="badge badge-r">20:25クラス</span>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:.72rem;color:var(--muted);margin-top:.8rem;">※スケジュールは変更になる場合があります。最新情報は公式LINEにてご確認ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY / COACH -->
+<section class="sec story" id="story">
+  <div class="sec-inner">
+    <div style="margin-bottom:3rem">
+      <div class="eyebrow">Coach</div>
+      <h2 class="sec-title">コーチ紹介</h2>
+    </div>
+    <div class="story-grid">
+      <div class="story-photo">
+        <img src="新デザインロゴ.jpg" alt="渡嘉敷 陣一 コーチ">
+        <div class="story-photo-badge">
+          <div class="name">Jinichi Tokashiki</div>
+          <div class="title">Head Coach / Performance Coordinator</div>
+        </div>
+      </div>
+      <div>
+        <p class="story-name">渡嘉敷 陣一</p>
+        <p class="story-role">代表 / Head Coach · Founder</p>
+        <p class="story-en">Tokashiki Jinichi · 八重瀬町出身 · 1988.9.13</p>
+        <div class="story-qual">
+          <span class="qual-tag">柔道整復師</span>
+          <span class="qual-tag">パフォーマンスコーチ</span>
+          <span class="qual-tag">パフォーマンスコンディショニング統括トレーナー</span>
+        </div>
+
+        <!-- 経歴 -->
+        <div class="career-section">
+          <h4>経歴</h4>
+          <ul class="career-list">
+            <li>東風平ヤンキース → 東風平中学校 → 糸満高校 → JABA社会人野球</li>
+            <li>スポーツ整形クリニック勤務 7年（メカニクス・アスレティックリハビリテーション）</li>
+            <li>JABA社会人野球チーム 専属コンディショニングトレーナー 5年帯同</li>
+            <li>沖縄県にてJIN BASEBALL独立開業</li>
+          </ul>
+        </div>
+
+        <!-- 専門領域 -->
+        <div class="career-section">
+          <h4>専門領域</h4>
+          <ul class="career-list">
+            <li>投打の動作改善指導（メカニクス）</li>
+            <li>パフォーマンスアップ・障害予防・コンディショニング</li>
+            <li>トレーニング指導（ジュニア〜プロ）</li>
+          </ul>
+        </div>
+
+        <!-- 指導実績 -->
+        <div class="career-section">
+          <h4>指導実績</h4>
+          <ul class="career-list">
+            <li>5,000人以上の指導実績（少年野球〜NPB）</li>
+            <li>県内外 30チーム以上（少年・中学・高校・大学・社会人）</li>
+            <li>JWL（Japan Winter League）帯同トレーナー</li>
+          </ul>
+        </div>
+
+        <!-- NPB -->
+        <div class="career-section">
+          <h4>NPB 自主トレサポート</h4>
+          <ul class="career-list">
+            <li>中日ドラゴンズ</li>
+            <li>オリックスバファローズ</li>
+            <li>ソフトバンクホークス</li>
+            <li>広島東洋カープ</li>
+          </ul>
+        </div>
+
+        <!-- 独立リーグ -->
+        <div class="career-section">
+          <h4>独立リーグ サポート</h4>
+          <ul class="career-list">
+            <li>徳島インディゴソックス</li>
+            <li>栃木ゴールデンブレーブス</li>
+            <li>福島レッドホープス</li>
+            <li>高知ファイティングドックス</li>
+            <li>愛媛マンダリンパイレーツ</li>
+            <li>琉球ブルーオーシャン</li>
+          </ul>
+        </div>
+
+        <!-- メディア -->
+        <div class="career-section">
+          <h4>メディア掲載・出演</h4>
+          <ul class="career-list">
+            <li>プロ野球沖縄県人会 サポートスタッフ</li>
+            <li>RBCiラジオ / FM沖縄</li>
+            <li>大野倫のフィールド・オブ・ドリームス（ラジオ）</li>
+            <li>中日新聞 / 琉球新報 / 沖縄タイムス</li>
+            <li>クニヨシTV（YouTube）</li>
+            <li>『野球大好き』〜 ベースボールマガジン</li>
+          </ul>
+        </div>
+
+        <div class="social-row">
+          <a href="https://www.instagram.com/jbt_okinawa/" target="_blank" class="social-btn">📷 Instagram</a>
+          <a href="https://m.facebook.com/jbt.okinawa" target="_blank" class="social-btn">👤 Facebook</a>
+          <a href="https://m.youtube.com/channel/UC8qHPjcHjnktjyLBmffiPWg" target="_blank" class="social-btn">▶ YouTube</a>
+          <a href="https://twitter.com/jinlabo" target="_blank" class="social-btn">𝕏 X</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINE CTA -->
+<div class="line-cta">
+  <h2>まず、体験してみてください。</h2>
+  <p>公式LINEから無料体験レッスンのお申込み・ご質問をどうぞ。</p>
+  <a href="https://lin.ee/UuAEwkm" target="_blank" class="btn-line">
+    <span style="font-size:1.1rem">💬</span>
+    公式LINEで無料体験を申込む
+  </a>
+</div>
+
+<!-- FAQ -->
+<section class="sec faq" id="faq">
+  <div class="sec-inner">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="sec-title">よくある質問</h2>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>野球経験のない子でも参加できますか？</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">はい、大歓迎です。野球未経験のお子さんも基礎の動作から丁寧に指導しますので安心してご参加ください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>少年野球チームに所属したままでも参加できますか？</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">もちろんです。チームの活動と並行して通われている選手が多数います。週末のチーム練習と組み合わせてご参加いただけます。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>無料体験はありますか？</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">あります。初回は無料体験レッスンをご用意しています。公式LINEまたはお電話よりお気軽にお申込みください。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Performance Labはどんな人が対象ですか？</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">ジュニアアスリートからトップアスリートまで幅広く対応しています。投球・打撃のパフォーマンスを向上させたい方ならどなたでも歓迎です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>沖縄県外でも受講できますか？</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">オンラインでの指導に対応しています。動画を使ったフォームチェックや自主練メニューの作成など、全国どこからでも受講可能です。</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>VERTEX TRAINING GYMは野球選手以外も利用できますか？</span><div class="faq-icon">+</div></div>
+        <div class="faq-a">はい。全スポーツ選手・一般の方どなたでもご利用いただけます。健康寿命の向上を目的とした利用も歓迎しています。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="sec access" id="access">
+  <div class="sec-inner">
+    <div class="eyebrow">Access</div>
+    <h2 class="sec-title">アクセス</h2>
+    <div class="access-grid">
+      <div class="map-box">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.7161578590726!2d127.74522851074956!3d26.238410788647762!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e5690b6603bbff%3A0xf2fd0ae229a3cda3!2sJIN%20BASEBALL!5e0!3m2!1sja!2sjp!4v1782098182131!5m2!1sja!2sjp"
+          width="600" height="450" style="border:0;"
+          allowfullscreen loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+      <div>
+        <dl class="info-block">
+          <dt>西原校（JBA）</dt>
+          <dd>〒903-0117 沖縄県中頭郡西原町翁長523-1 めぐみビル 1F</dd>
+          <dt>糸満校（JBA SOUTH）</dt>
+          <dd>沖縄県糸満市（詳細はLINEにてお問い合わせください）</dd>
+          <dt>電話番号</dt>
+          <dd><a href="tel:090-6861-1735">090-6861-1735</a>（西原校 パフォーマンスコーチ：渡嘉敷）</dd>
+          <dd style="margin-top:.4rem"><a href="tel:090-8353-5831">090-8353-5831</a>（South校 パフォーマンスコーチ：具志堅）</dd>
+          <dt>営業時間</dt>
+          <dd>アカデミー：19:20〜</dd>
+          <dd style="margin-top:.3rem">パーソナル：完全予約制</dd>
+          <dt>公式LINE</dt>
+          <dd style="margin-top:.5rem;display:flex;flex-direction:column;gap:.5rem;">
+            <a href="https://lin.ee/UuAEwkm" target="_blank"
+               style="display:inline-flex;align-items:center;gap:.4rem;background:#06C755;color:#fff;padding:.35rem .9rem;border-radius:4px;font-size:.78rem;font-weight:700;text-decoration:none;">
+              💬 西原校（JBA）友達追加
+            </a>
+            <a href="https://line.me/R/ti/p/@337negyd" target="_blank"
+               style="display:inline-flex;align-items:center;gap:.4rem;background:#06C755;color:#fff;padding:.35rem .9rem;border-radius:4px;font-size:.78rem;font-weight:700;text-decoration:none;">
+              💬 糸満校（JBA SOUTH）友達追加
+            </a>
+          </dd>
+          <dt>SNS</dt>
+          <dd>
+            <div class="social-row" style="margin-top:.5rem">
+              <a href="https://www.instagram.com/jbt_okinawa/" target="_blank" class="social-btn">📷 IG</a>
+              <a href="https://m.facebook.com/jbt.okinawa" target="_blank" class="social-btn">👤 FB</a>
+              <a href="https://m.youtube.com/channel/UC8qHPjcHjnktjyLBmffiPWg" target="_blank" class="social-btn">▶ YT</a>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div>
+      <div class="ft-logo">JIN <span>BASEBALL</span></div>
+      <p class="ft-tagline">
+        野球選手の溜まり場<br>
+        自らの限界を超えていく場所<br>
+        いざ「頂点へ」<br><br>
+        沖縄県西原町・糸満市
+      </p>
+    </div>
+    <div class="ft-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#services">サービス一覧</a></li>
+        <li><a href="#academy">Academy</a></li>
+        <li><a href="#equipment">設備・機材</a></li>
+        <li><a href="#story">コーチ紹介</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#access">アクセス</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:090-6861-1735">📞 090-6861-1735</a></li>
+        <li><a href="https://lin.ee/pNQ6KZv" target="_blank">💬 公式LINE（Academy）</a></li>
+        <li><a href="https://lin.ee/wl2FIBl" target="_blank">💬 公式LINE（Performance Lab）</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="ft-copy">© 2023 JIN BASEBALL. All rights reserved.</p>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open')}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+document.querySelectorAll('#navLinks a').forEach(a=>{
+  a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open'));
+});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();window.scrollTo({top:t.offsetTop-64,behavior:'smooth'});}
+  });
+});
+</script>
+</body>
+</html>
